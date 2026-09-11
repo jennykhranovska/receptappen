@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import RecipeCard from "./components/RecipeCard";
 import RecipeForm from "./components/RecipeForm";
+import "./App.css";
 
 function App() {
   return (
