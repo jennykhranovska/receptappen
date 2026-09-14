@@ -1,4 +1,4 @@
-function Header({ onToggleForm }) {
+function Header({ onShowRecipes, onShowForm }) {
   return (
     <header className="header">
       <div className="header-container">
@@ -6,11 +6,21 @@ function Header({ onToggleForm }) {
           <span className="logo-icon">🍲</span>
           <span className="logo-text">Smaka</span>
         </a>
+
         <nav className="nav">
-          <a href="#recipes" className="nav-link">
+          <button
+            type="button"
+            className="nav-link"
+            onClick={onShowRecipes}
+          >
             Mina recept
-          </a>
-          <button type="button" className="btn-add" onClick={onToggleForm}>
+          </button>
+
+          <button
+            type="button"
+            className="btn-add"
+            onClick={onShowForm}
+          >
             + Lägg till recept
           </button>
         </nav>
