@@ -13,19 +13,19 @@ function RecipeCard({ recipe, onOpen }) {
       role="button"
       tabIndex="0"
     >
-      <div className="recipe-card-image-wrap">
-        {recipe.image ? (
-          <img
-            src={recipe.image}
-            alt={recipe.name}
-            className="recipe-card-image"
-          />
-        ) : (
-          <div className="recipe-card-placeholder">
-            <span className="placeholder-icon">🍳</span>
-          </div>
-        )}
-      </div>
+     <div className="recipe-card-image-wrap">
+  {recipe.imagePath ? (
+    <img
+      src={`http://localhost:5008${recipe.imagePath}`}
+      alt={recipe.name}
+      className="recipe-card-image"
+    />
+  ) : (
+    <div className="recipe-card-placeholder">
+      <span className="placeholder-icon">🍳</span>
+    </div>
+  )}
+</div>
 
       <div className="recipe-card-body">
         {recipe.category && (

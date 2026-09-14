@@ -10,6 +10,7 @@ function RecipeForm({
   const [cookingTime, setCookingTime] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [instructions, setInstructions] = useState("");
+  const [imageFile, setImageFile] = useState(null);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -26,7 +27,67 @@ function RecipeForm({
       setIngredients("");
       setInstructions("");
     }
+
+    setImageFile(null);
   }, [editingRecipe]);
+
+  function handleImageChange(event) {
+    const file = event.target.files[0] || null;
+    setImageFile(file);
+  }
+
+  async function uploadImage(recipeId) {
+    if (!imageFile) {
+      return null;
+    }
+
+    const formData = new FormData();
+
+    formData.append("image", imageFile);
+
+    const response = await fetch(
+      `http://localhost:5008/api/Recipes/${recipeId}/image`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Det gick inte att ladda upp bilden.");
+    }
+
+    return await response.json();
+  }
+
+  async function handleDeleteImage() {
+    if (!editingRecipe) {
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:5008/api/Recipes/${editingRecipe.id}/image`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Det gick inte att ta bort bilden.");
+      }
+
+      const updatedRecipe = await response.json();
+
+      setImageFile(null);
+      setError("");
+
+      onRecipeUpdated(updatedRecipe);
+    } catch (error) {
+      console.error(error);
+      setError("Något gick fel när bilden skulle tas bort.");
+    }
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -56,8 +117,19 @@ function RecipeForm({
           throw new Error("Det gick inte att uppdatera receptet.");
         }
 
-        const updatedRecipe = await response.json();
+        let updatedRecipe = await response.json();
 
+        if (imageFile) {
+          const recipeWithImage = await uploadImage(
+            updatedRecipe.id
+          );
+
+          if (recipeWithImage) {
+            updatedRecipe = recipeWithImage;
+          }
+        }
+
+        setError("");
         onRecipeUpdated(updatedRecipe);
       } else {
         const response = await fetch(
@@ -75,12 +147,21 @@ function RecipeForm({
           throw new Error("Det gick inte att spara receptet.");
         }
 
-        const savedRecipe = await response.json();
+        let savedRecipe = await response.json();
 
+        if (imageFile) {
+          const recipeWithImage = await uploadImage(
+            savedRecipe.id
+          );
+
+          if (recipeWithImage) {
+            savedRecipe = recipeWithImage;
+          }
+        }
+
+        setError("");
         onRecipeCreated(savedRecipe);
       }
-
-      setError("");
     } catch (error) {
       console.error(error);
 
@@ -187,6 +268,30 @@ function RecipeForm({
           rows="6"
           required
         />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="image" className="form-label">
+          Bild
+        </label>
+
+        <input
+          id="image"
+          type="file"
+          className="form-input"
+          accept="image/*"
+          onChange={handleImageChange}
+        />
+
+        {editingRecipe?.imagePath && (
+          <button
+            type="button"
+            className="btn-delete-image"
+            onClick={handleDeleteImage}
+          >
+            Ta bort bild
+          </button>
+        )}
       </div>
 
       <button type="submit" className="btn-submit">

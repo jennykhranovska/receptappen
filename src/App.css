@@ -12,9 +12,11 @@
   --color-text-muted: #736961;
   --color-border: #eee7df;
   --color-border-focus: #d9532f;
+
   --shadow-sm: 0 2px 6px rgba(45, 38, 33, 0.04);
   --shadow-md: 0 6px 18px rgba(45, 38, 33, 0.07);
   --shadow-lg: 0 12px 28px rgba(45, 38, 33, 0.1);
+
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
@@ -29,6 +31,7 @@
 /* --------------------------------------------------------------------------
    Header
    -------------------------------------------------------------------------- */
+
 .header {
   background-color: var(--color-card-bg);
   border-bottom: 1px solid var(--color-border);
@@ -71,6 +74,27 @@
   gap: 20px;
 }
 
+.nav-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background-color: transparent;
+  border: 1.5px solid var(--color-primary);
+  border-radius: 999px;
+  padding: 9px 16px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
 .btn-add {
   background-color: var(--color-primary);
   color: #ffffff;
@@ -80,7 +104,9 @@
   border-radius: 999px;
   font-size: 14px;
   font-weight: 600;
-  transition: background-color 0.2s ease, transform 0.15s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
   display: inline-block;
 }
 
@@ -92,6 +118,7 @@
 /* --------------------------------------------------------------------------
    Main Content Layout
    -------------------------------------------------------------------------- */
+
 .main-content {
   max-width: 1100px;
   width: 100%;
@@ -105,8 +132,13 @@
 /* --------------------------------------------------------------------------
    Hero Sektion
    -------------------------------------------------------------------------- */
+
 .hero-section {
-  background: linear-gradient(135deg, #fff7f2 0%, #fdf3eb 100%);
+  background: linear-gradient(
+    135deg,
+    #fff7f2 0%,
+    #fdf3eb 100%
+  );
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: 56px 32px;
@@ -134,7 +166,10 @@
   margin-bottom: 28px;
 }
 
-/* Sökfält */
+/* --------------------------------------------------------------------------
+   Sökfält
+   -------------------------------------------------------------------------- */
+
 .search-bar {
   display: flex;
   align-items: center;
@@ -145,7 +180,9 @@
   max-width: 500px;
   margin: 0 auto;
   box-shadow: var(--shadow-md);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .search-bar:focus-within {
@@ -173,8 +210,9 @@
 }
 
 /* --------------------------------------------------------------------------
-   Mina Recept Sektion & Grid
+   Mina Recept
    -------------------------------------------------------------------------- */
+
 .recipes-section {
   display: flex;
   flex-direction: column;
@@ -199,13 +237,15 @@
 
 .recipe-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns:
+    repeat(auto-fill, minmax(280px, 1fr));
   gap: 28px;
 }
 
 /* --------------------------------------------------------------------------
    RecipeCard
    -------------------------------------------------------------------------- */
+
 .recipe-card {
   background-color: var(--color-card-bg);
   border: 1px solid var(--color-border);
@@ -214,7 +254,9 @@
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
   cursor: pointer;
 }
 
@@ -288,29 +330,10 @@
   font-weight: 500;
 }
 
-.btn-edit {
-  align-self: flex-start;
-  margin-top: 6px;
-  background-color: transparent;
-  color: var(--color-primary);
-  border: 1.5px solid var(--color-primary);
-  border-radius: 999px;
-  padding: 8px 18px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
-}
-
-.btn-edit:hover {
-  background-color: var(--color-primary);
-  color: #ffffff;
-  transform: translateY(-1px);
-}
-
 /* --------------------------------------------------------------------------
-   RecipeForm Sektion
+   Formulär
    -------------------------------------------------------------------------- */
+
 .form-section {
   display: flex;
   justify-content: center;
@@ -367,7 +390,9 @@
   background-color: #fdfcfa;
   color: var(--color-text-main);
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .form-input:focus {
@@ -380,17 +405,25 @@
   color: #aba29a;
 }
 
+/* --------------------------------------------------------------------------
+   Spara-knapp
+   -------------------------------------------------------------------------- */
+
 .btn-submit {
+  align-self: flex-start;
+  width: auto;
   background-color: var(--color-primary);
   color: #ffffff;
   border: none;
-  border-radius: var(--radius-sm);
-  padding: 14px;
-  font-size: 16px;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   margin-top: 8px;
-  transition: background-color 0.2s ease, transform 0.15s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
 }
 
 .btn-submit:hover {
@@ -403,8 +436,99 @@
 }
 
 /* --------------------------------------------------------------------------
-   Responsivitet (Mobil & Surfplatta)
+   Receptsida - knappar
    -------------------------------------------------------------------------- */
+
+.recipe-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-edit-details {
+  align-self: flex-start;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.btn-edit-details:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-delete {
+  background-color: transparent;
+  color: #b33a2b;
+  border: 1.5px solid #b33a2b;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn-delete:hover {
+  background-color: #b33a2b;
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   Ta bort bild
+   -------------------------------------------------------------------------- */
+
+.btn-delete-image {
+  margin-top: 10px;
+  align-self: flex-start;
+  width: auto;
+  background-color: transparent;
+  color: #b33a2b;
+  border: 1.5px solid #b33a2b;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn-delete-image:hover {
+  background-color: #b33a2b;
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   Felmeddelande
+   -------------------------------------------------------------------------- */
+
+.error-message {
+  color: #b33a2b;
+  background-color: #fff2ef;
+  border: 1px solid #f1c4ba;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   Responsivitet - Surfplatta / Mobil
+   -------------------------------------------------------------------------- */
+
 @media (max-width: 768px) {
   .header-container {
     padding: 14px 18px;
@@ -451,64 +575,17 @@
     padding: 8px 14px;
     font-size: 13px;
   }
-}
-.nav-link {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--color-primary);
-  background-color: transparent;
-  border: 1.5px solid var(--color-primary);
-  border-radius: 999px;
-  padding: 9px 16px;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease,
-    transform 0.15s ease;
-}
 
-.nav-link:hover {
-  background-color: var(--color-primary-light);
-  color: var(--color-primary-hover);
-  transform: translateY(-1px);
-}
+  .hero-title {
+    font-size: 24px;
+  }
 
-.btn-edit-details {
-  align-self: flex-start;
-  background-color: var(--color-primary);
-  color: #ffffff;
-  border: none;
-  border-radius: 999px;
-  padding: 10px 18px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 0;
-  transition: background-color 0.2s ease, transform 0.15s ease;
-}
+  .recipe-card-image-wrap {
+    height: 180px;
+  }
 
-.btn-edit-details:hover {
-  background-color: var(--color-primary-hover);
-  transform: translateY(-1px);
-}
-.recipe-actions {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.btn-delete {
-  background-color: transparent;
-  color: #b33a2b;
-  border: 1.5px solid #b33a2b;
-  border-radius: 999px;
-  padding: 10px 18px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.btn-delete:hover {
-  background-color: #b33a2b;
-  color: #ffffff;
+  .btn-submit {
+    font-size: 13px;
+    padding: 9px 16px;
+  }
 }
