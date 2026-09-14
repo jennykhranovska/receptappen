@@ -1,6 +1,18 @@
-function RecipeCard({ recipe, onEdit }) {
+function RecipeCard({ recipe, onOpen }) {
+  function handleKeyDown(event) {
+    if (event.key === "Enter" || event.key === " ") {
+      onOpen(recipe);
+    }
+  }
+
   return (
-    <article className="recipe-card">
+    <article
+      className="recipe-card"
+      onClick={() => onOpen(recipe)}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex="0"
+    >
       <div className="recipe-card-image-wrap">
         {recipe.image ? (
           <img
@@ -25,14 +37,6 @@ function RecipeCard({ recipe, onEdit }) {
         <p className="recipe-time">
           ⏱️ {recipe.cookingTime} minuter
         </p>
-
-        <button
-          type="button"
-          className="btn-edit"
-          onClick={() => onEdit(recipe)}
-        >
-          Redigera
-        </button>
       </div>
     </article>
   );

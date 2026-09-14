@@ -71,17 +71,6 @@
   gap: 20px;
 }
 
-.nav-link {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--color-text-main);
-  transition: color 0.2s ease;
-}
-
-.nav-link:hover {
-  color: var(--color-primary);
-}
-
 .btn-add {
   background-color: var(--color-primary);
   color: #ffffff;
@@ -226,6 +215,7 @@
   display: flex;
   flex-direction: column;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
 }
 
 .recipe-card:hover {
@@ -461,4 +451,64 @@
     padding: 8px 14px;
     font-size: 13px;
   }
+}
+.nav-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background-color: transparent;
+  border: 1.5px solid var(--color-primary);
+  border-radius: 999px;
+  padding: 9px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-edit-details {
+  align-self: flex-start;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-edit-details:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+.recipe-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-delete {
+  background-color: transparent;
+  color: #b33a2b;
+  border: 1.5px solid #b33a2b;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-delete:hover {
+  background-color: #b33a2b;
+  color: #ffffff;
 }

@@ -5,6 +5,70 @@ import Header from "./components/Header";
 import RecipeCard from "./components/RecipeCard";
 import RecipeForm from "./components/RecipeForm";
 
+function RecipeDetailsPage({ recipes, onEdit, onDelete }) {
+  const { id } = useParams();
+
+  const recipe = recipes.find(
+    (recipe) => recipe.id === Number(id)
+  );
+
+  if (!recipe) {
+    return <p>Receptet laddas...</p>;
+  }
+
+  return (
+    <section className="form-section">
+      <div className="recipe-form">
+        {recipe.category && (
+          <span className="recipe-badge">
+            {recipe.category}
+          </span>
+        )}
+
+        <h1 className="form-title">{recipe.name}</h1>
+
+        <p className="recipe-time">
+          ⏱️ {recipe.cookingTime} minuter
+        </p>
+
+        <div className="form-group">
+          <h3>Ingredienser</h3>
+
+          <p style={{ whiteSpace: "pre-line" }}>
+            {recipe.ingredients || "Inga ingredienser tillagda."}
+          </p>
+        </div>
+
+        <div className="form-group">
+          <h3>Instruktioner</h3>
+
+          <p style={{ whiteSpace: "pre-line" }}>
+            {recipe.instructions || "Inga instruktioner tillagda."}
+          </p>
+        </div>
+
+        <div className="recipe-actions">
+          <button
+            type="button"
+            className="btn-edit-details"
+            onClick={() => onEdit(recipe)}
+          >
+            Redigera recept
+          </button>
+
+          <button
+            type="button"
+            className="btn-delete"
+            onClick={() => onDelete(recipe)}
+          >
+            Ta bort recept
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function EditRecipePage({ recipes, onRecipeUpdated }) {
   const { id } = useParams();
 
@@ -57,7 +121,11 @@ function App() {
       savedRecipe,
     ]);
 
-    navigate("/");
+    navigate(`/recipes/${savedRecipe.id}`);
+  }
+
+  function handleOpenRecipe(recipe) {
+    navigate(`/recipes/${recipe.id}`);
   }
 
   function handleEditRecipe(recipe) {
@@ -71,7 +139,42 @@ function App() {
       )
     );
 
-    navigate("/");
+    navigate(`/recipes/${updatedRecipe.id}`);
+  }
+
+  async function handleDeleteRecipe(recipe) {
+    const confirmed = window.confirm(
+      `Vill du verkligen ta bort "${recipe.name}"?`
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:5008/api/Recipes/${recipe.id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Det gick inte att ta bort receptet.");
+      }
+
+      setRecipes((currentRecipes) =>
+        currentRecipes.filter(
+          (currentRecipe) => currentRecipe.id !== recipe.id
+        )
+      );
+
+      setError("");
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+      setError("Något gick fel när receptet skulle tas bort.");
+    }
   }
 
   return (
@@ -134,7 +237,7 @@ function App() {
                       <RecipeCard
                         key={recipe.id}
                         recipe={recipe}
-                        onEdit={handleEditRecipe}
+                        onOpen={handleOpenRecipe}
                       />
                     ))}
                   </div>
@@ -152,6 +255,17 @@ function App() {
                   onRecipeCreated={handleRecipeCreated}
                 />
               </section>
+            }
+          />
+
+          <Route
+            path="/recipes/:id"
+            element={
+              <RecipeDetailsPage
+                recipes={recipes}
+                onEdit={handleEditRecipe}
+                onDelete={handleDeleteRecipe}
+              />
             }
           />
 
