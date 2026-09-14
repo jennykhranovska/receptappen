@@ -8,6 +8,8 @@ function RecipeForm({
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [cookingTime, setCookingTime] = useState("");
+  const [ingredients, setIngredients] = useState("");
+  const [instructions, setInstructions] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -15,10 +17,14 @@ function RecipeForm({
       setName(editingRecipe.name);
       setCategory(editingRecipe.category);
       setCookingTime(editingRecipe.cookingTime);
+      setIngredients(editingRecipe.ingredients || "");
+      setInstructions(editingRecipe.instructions || "");
     } else {
       setName("");
       setCategory("");
       setCookingTime("");
+      setIngredients("");
+      setInstructions("");
     }
   }, [editingRecipe]);
 
@@ -29,6 +35,8 @@ function RecipeForm({
       name,
       category,
       cookingTime: Number(cookingTime),
+      ingredients,
+      instructions,
     };
 
     try {
@@ -75,6 +83,7 @@ function RecipeForm({
       setError("");
     } catch (error) {
       console.error(error);
+
       setError(
         editingRecipe
           ? "Något gick fel när receptet skulle uppdateras."
@@ -144,6 +153,38 @@ function RecipeForm({
           value={cookingTime}
           onChange={(event) => setCookingTime(event.target.value)}
           min="1"
+          required
+        />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="ingredients" className="form-label">
+          Ingredienser
+        </label>
+
+        <textarea
+          id="ingredients"
+          className="form-input"
+          placeholder="T.ex. 2 ägg, 3 dl mjöl, 5 dl mjölk"
+          value={ingredients}
+          onChange={(event) => setIngredients(event.target.value)}
+          rows="5"
+          required
+        />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="instructions" className="form-label">
+          Instruktioner
+        </label>
+
+        <textarea
+          id="instructions"
+          className="form-input"
+          placeholder="Beskriv hur receptet tillagas..."
+          value={instructions}
+          onChange={(event) => setInstructions(event.target.value)}
+          rows="6"
           required
         />
       </div>
