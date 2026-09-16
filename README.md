@@ -55,3 +55,11 @@ dotnet run
 ```
 
 API:t startar på http://localhost:5008
+
+## Tekniska val
+
+Jag har delat upp frontend i flera React-komponenter för att göra koden lättare att läsa och underhålla. Exempelvis ligger formuläret i RecipeForm och visningen av ett receptkort i RecipeCard.
+
+API-adressen ligger i en separat api.js-fil eftersom flera komponenter använder samma adress. På så sätt behöver adressen bara ändras på ett ställe.
+
+Jag använder React Router för att kunna navigera mellan receptlistan, detaljsidan, formuläret för nya recept och sidan för redigering utan att ladda om hela webbapplikationen.
