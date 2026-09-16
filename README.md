@@ -1,16 +1,37 @@
-# React + Vite
+# Receptappen
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Receptappen är en webbapplikation där användaren kan samla och hantera sina recept.
 
-Currently, two official plugins are available:
+Frontend är byggd med React och kommunicerar med ett separat ASP.NET Core Web API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Funktioner
 
-## React Compiler
+- Visa sparade recept
+- Lägga till nya recept
+- Redigera befintliga recept
+- Ta bort recept
+- Ladda upp en bild till ett recept
+- Visa uppladdade bilder
+- Visa felmeddelande om kommunikationen med API:et misslyckas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Starta frontend
 
-## Expanding the ESLint configuration
+### Förutsättningar
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+För att köra projektet behöver Node.js och npm finnas installerat.
+
+### Installation
+
+Klona repot och öppna projektmappen i en terminal.
+
+Installera projektets dependencies:
+
+### bash
+
+npm install
+
+Starta utvecklingsservern:
+
+npm run dev
+
+Frontend startar på: http://localhost:5173
