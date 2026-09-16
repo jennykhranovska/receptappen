@@ -1,3 +1,5 @@
+import { API_URL } from "../api";
+
 function RecipeCard({ recipe, onOpen }) {
   function handleKeyDown(event) {
     if (event.key === "Enter" || event.key === " ") {
@@ -16,7 +18,7 @@ function RecipeCard({ recipe, onOpen }) {
      <div className="recipe-card-image-wrap">
   {recipe.imagePath ? (
     <img
-      src={`http://localhost:5008${recipe.imagePath}`}
+      src={`${API_URL}${recipe.imagePath}`}
       alt={recipe.name}
       className="recipe-card-image"
     />

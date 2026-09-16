@@ -1,3 +1,4 @@
+import { API_URL } from "../api";
 import { useEffect, useState } from "react";
 
 function RecipeForm({
@@ -46,7 +47,7 @@ function RecipeForm({
     formData.append("image", imageFile);
 
     const response = await fetch(
-      `http://localhost:5008/api/Recipes/${recipeId}/image`,
+      `${API_URL}/api/Recipes/${recipeId}/image`,
       {
         method: "POST",
         body: formData,
@@ -67,7 +68,7 @@ function RecipeForm({
 
     try {
       const response = await fetch(
-        `http://localhost:5008/api/Recipes/${editingRecipe.id}/image`,
+        `${API_URL}/api/Recipes/${editingRecipe.id}/image`,
         {
           method: "DELETE",
         }
@@ -103,7 +104,7 @@ function RecipeForm({
     try {
       if (editingRecipe) {
         const response = await fetch(
-          `http://localhost:5008/api/Recipes/${editingRecipe.id}`,
+          `${API_URL}/api/Recipes/${editingRecipe.id}`,
           {
             method: "PUT",
             headers: {
@@ -133,7 +134,7 @@ function RecipeForm({
         onRecipeUpdated(updatedRecipe);
       } else {
         const response = await fetch(
-          "http://localhost:5008/api/Recipes",
+          `${API_URL}/api/Recipes`,
           {
             method: "POST",
             headers: {

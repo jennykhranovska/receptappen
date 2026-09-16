@@ -1,3 +1,4 @@
+import { API_URL } from "./api";
 import { useEffect, useState } from "react";
 import { Route, Routes, useNavigate, useParams } from "react-router-dom";
 import "./App.css";
@@ -97,7 +98,7 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5008/api/Recipes")
+    fetch(`${API_URL}/api/Recipes`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Det gick inte att hämta recepten.");
@@ -153,7 +154,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `http://localhost:5008/api/Recipes/${recipe.id}`,
+        `${API_URL}/api/Recipes/${recipe.id}`,
         {
           method: "DELETE",
         }
