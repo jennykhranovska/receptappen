@@ -35,3 +35,23 @@ Starta utvecklingsservern:
 npm run dev
 
 Frontend startar på: http://localhost:5173
+
+## Starta backend
+
+Backend är byggd med ASP.NET Core Web API.
+
+### Förutsättningar
+
+För att köra backend behöver .NET SDK finnas installerat.
+
+### Installation
+
+Klona backend-repot från GitHub och öppna projektmappen i en terminal.
+
+Starta API:t:
+
+```bash
+dotnet run
+```
+
+API:t startar på http://localhost:5008
