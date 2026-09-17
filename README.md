@@ -13,6 +13,7 @@ Frontend är byggd med React och kommunicerar med ett separat ASP.NET Core Web A
 - Ladda upp en bild till ett recept
 - Visa uppladdade bilder
 - Visa felmeddelande om kommunikationen med API:et misslyckas
+- Söka efter recept, råvaror och kategorier
 
 ## Starta frontend
 
@@ -26,19 +27,23 @@ Klona repot och öppna projektmappen i en terminal.
 
 Installera projektets dependencies:
 
-### bash
-
+```bash
 npm install
+```
 
 Starta utvecklingsservern:
 
+```bash
 npm run dev
+```
 
-Frontend startar på: http://localhost:5173
+Frontend startar på: `http://localhost:5173`
 
 ## Starta backend
 
 Backend är byggd med ASP.NET Core Web API.
+
+Backend-repo: [jennykhranovska/receptappen-api](https://github.com/jennykhranovska/receptappen-api)
 
 ### Förutsättningar
 
@@ -54,7 +59,9 @@ Starta API:t:
 dotnet run
 ```
 
-API:t startar på http://localhost:5008
+API:t startar på `http://localhost:5008`.
+
+Låt backend vara igång samtidigt som frontend används.
 
 ## Tekniska val
 
