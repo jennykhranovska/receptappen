@@ -94,7 +94,7 @@ function EditRecipePage({ recipes, onRecipeUpdated }) {
 function App() {
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState("");
-
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -115,7 +115,19 @@ function App() {
         setError("Något gick fel när recepten skulle hämtas.");
       });
   }, []);
+const filteredRecipes = recipes.filter((recipe) => {
+  const search = searchTerm.toLowerCase().trim();
 
+  if (!search) {
+    return true;
+  }
+
+  const words = `${recipe.name} ${recipe.ingredients} ${recipe.category}`
+    .toLowerCase()
+    .split(/[\s,.;:!?()]+/);
+
+  return words.includes(search);
+});
   function handleRecipeCreated(savedRecipe) {
     setRecipes((currentRecipes) => [
       ...currentRecipes,
@@ -206,11 +218,13 @@ function App() {
                       <span className="search-icon">🔍</span>
 
                       <input
-                        type="text"
-                        className="search-input"
-                        placeholder="Sök recept, råvara eller kategori..."
-                        aria-label="Sök recept"
-                      />
+  type="text"
+  className="search-input"
+  placeholder="Sök recept, råvara eller kategori..."
+  aria-label="Sök recept"
+  value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}
+/>
                     </div>
                   </div>
                 </section>
@@ -234,7 +248,7 @@ function App() {
                   )}
 
                   <div className="recipe-grid">
-                    {recipes.map((recipe) => (
+                  {filteredRecipes.map((recipe) => (  
                       <RecipeCard
                         key={recipe.id}
                         recipe={recipe}
