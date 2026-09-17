@@ -115,7 +115,7 @@ function App() {
         setError("Något gick fel när recepten skulle hämtas.");
       });
   }, []);
-const filteredRecipes = recipes.filter((recipe) => {
+  const filteredRecipes = recipes.filter((recipe) => {
   const search = searchTerm.toLowerCase().trim();
 
   if (!search) {
@@ -126,7 +126,7 @@ const filteredRecipes = recipes.filter((recipe) => {
     .toLowerCase()
     .split(/[\s,.;:!?()]+/);
 
-  return words.includes(search);
+  return words.some((word) => word.startsWith(search));
 });
   function handleRecipeCreated(savedRecipe) {
     setRecipes((currentRecipes) => [
